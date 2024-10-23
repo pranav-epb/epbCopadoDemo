@@ -1,0 +1,13 @@
+public class epbTestDeployment1 {
+    //Update Account Name if Verified__c is true
+    public static void updateAccountName() {
+        List<Account> accountToUpdate = [SELECT Id, Name FROM Account WHERE Verified__c = true];
+        for (Account acc : accountToUpdate) {
+            //Appending Verified to the updated Account.
+            acc.Name += ' - Verified';
+        }
+        if (!accountToUpdate.isEmpty()) {
+            update accountToUpdate;
+        }
+    }
+}
